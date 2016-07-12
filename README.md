@@ -1,5 +1,4 @@
-[CDATA[
-# ${1:Tournament Scheduler}
+## Tournament Scheduler
 
 A library to easiily generate matchups for various types of tournament formats.
 
@@ -22,4 +21,3 @@ TODO: Write usage instructions
 ## License
 
 MIT License
-]]
