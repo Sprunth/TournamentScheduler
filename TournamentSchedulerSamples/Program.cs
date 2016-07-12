@@ -19,7 +19,8 @@ namespace TournamentSchedulerSamples
 
             var scheduler = new RoundRobinScheduler<int>();
             scheduler.LoadCompetitors(competitors);
-            var matchups = scheduler.CalculateMatchups();
+            scheduler.CalculateMatchups();
+            var matchups = scheduler.Matchups;
 
             var matchupsBrokenDown = new Dictionary<int, List<int>>();
             competitors.ForEach(i => matchupsBrokenDown.Add(i, new List<int>()));
@@ -30,6 +31,7 @@ namespace TournamentSchedulerSamples
                 matchupsBrokenDown[matchup.Item2].Add(matchup.Item1);
             }
 
+            Console.WriteLine("Matchups by Competitor, in order");
             foreach (var keyValuePair in matchupsBrokenDown)
             {
                 Console.WriteLine(keyValuePair.Key + ": ");

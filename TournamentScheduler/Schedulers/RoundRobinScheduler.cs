@@ -41,9 +41,10 @@ namespace Sprunth.TournamentScheduler.Schedulers
             this.competitors.RemoveAt(0);
         }
 
-        public override IEnumerable<Tuple<T, T>> CalculateMatchups()
+        public override void CalculateMatchups()
         {
             var matchups = new List<Tuple<T, T>>();
+            var matchupsByDay = new List<IList<Tuple<T, T>>>();
 
             var rotatingTeamSize = competitors.Count;
 
@@ -51,17 +52,25 @@ namespace Sprunth.TournamentScheduler.Schedulers
             {
                 var teamIdx = day%rotatingTeamSize;
 
-                matchups.Add(new Tuple<T, T>(competitors[teamIdx], firstCompetitor));
+                var firstMatchup = new Tuple<T, T>(competitors[teamIdx], firstCompetitor);
+                matchups.Add(firstMatchup);
+                var dayMatchups = new List<Tuple<T, T>>() {firstMatchup};
 
                 for (var idx = 1; idx < halfSize; idx++)
                 {
                     var firstTeamIndex = (day + idx)%rotatingTeamSize;
                     var secondTeamIndex = (day + rotatingTeamSize - idx)%rotatingTeamSize;
-                    matchups.Add(new Tuple<T, T>(competitors[firstTeamIndex], competitors[secondTeamIndex]));
+
+                    var tup = new Tuple<T, T>(competitors[firstTeamIndex], competitors[secondTeamIndex]);
+                    matchups.Add(tup);
+                    dayMatchups.Add(tup);
                 }
+
+                matchupsByDay.Add(dayMatchups);
             }
 
-            return matchups;
+            Matchups = matchups;
+            MatchupsByDay = matchupsByDay;
         }
     }
 }
