@@ -1,14 +1,14 @@
 ## Tournament Scheduler
 
-A library to easiily generate matchups for various types of tournament formats.
+A library to easily generate matchups for various types of tournament formats.
 
 ## Installation
 
-TODO: Describe the installation process
+Open the solution and build!
 
 ## Usage
 
-TODO: Write usage instructions
+Refer to the TournamentScheduleSamples for sample code
 
 ## Contributing
 
