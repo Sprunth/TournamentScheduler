@@ -55,7 +55,7 @@ namespace Sprunth.TournamentScheduler.Schedulers.Tests
         public void CalculateMatchupsTest()
         {
             scheduler.LoadCompetitors(testCompetitors);
-            scheduler.CalculateMatchups();
+            scheduler.CalculateNextMatchups();
             var matchups = scheduler.Matchups;
 
             var matchupsBrokenDown = new Dictionary<int, List<int>>();
@@ -63,8 +63,8 @@ namespace Sprunth.TournamentScheduler.Schedulers.Tests
 
             foreach (var matchup in matchups)
             {
-                matchupsBrokenDown[matchup.Item1].Add(matchup.Item2);
-                matchupsBrokenDown[matchup.Item2].Add(matchup.Item1);
+                matchupsBrokenDown[matchup.Challenger1].Add(matchup.Challenger2);
+                matchupsBrokenDown[matchup.Challenger2].Add(matchup.Challenger1);
             }
 
             var wrongMatchCount =
@@ -78,8 +78,8 @@ namespace Sprunth.TournamentScheduler.Schedulers.Tests
         public void CalculateMatchupsByDayTest()
         {
             scheduler.LoadCompetitors(testCompetitors);
-            scheduler.CalculateMatchups();
-            var matchupsByDay = scheduler.MatchupsByDay;
+            scheduler.CalculateNextMatchups();
+            var matchupsByDay = scheduler.MatchupsByIteration;
 
             Assert.IsTrue(matchupsByDay.All(tuples => tuples.Count == (int) Math.Ceiling(testCompetitors.Count/2.0)));
         }
@@ -88,8 +88,8 @@ namespace Sprunth.TournamentScheduler.Schedulers.Tests
         public void CalculateMatchupsByDayTest2()
         {
             scheduler.LoadCompetitors(testCompetitors);
-            scheduler.CalculateMatchups();
-            var matchupsByDay = scheduler.MatchupsByDay;
+            scheduler.CalculateNextMatchups();
+            var matchupsByDay = scheduler.MatchupsByIteration;
 
             Assert.IsTrue(matchupsByDay.Count == testCompetitors.Count - 1);
         }

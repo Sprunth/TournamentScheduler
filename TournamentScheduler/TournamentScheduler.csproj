@@ -40,9 +40,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Schedulers\Scheduler.cs" />
+    <Compile Include="Matchup.cs" />
+    <Compile Include="Schedulers\Base\EliminationScheduler.cs" />
+    <Compile Include="Schedulers\Base\Scheduler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Schedulers\RoundRobinScheduler.cs" />
+    <Compile Include="Schedulers\SingleEliminationScheduler.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
