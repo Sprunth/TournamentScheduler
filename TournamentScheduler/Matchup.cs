@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Sprunth.TournamentScheduler
 {
-    public struct Matchup<T> where T : IComparable
+    public class Matchup<T> where T : IComparable
     {
         public T Challenger1;
         public T Challenger2;

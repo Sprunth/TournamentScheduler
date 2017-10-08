@@ -66,7 +66,7 @@ namespace Sprunth.TournamentScheduler.Schedulers
 
         private bool ReadyForNextIteration()
         {
-            return currentMatchups == null || !currentMatchups.All(matchup => matchup.WinnerSet);
+            return currentMatchups == null || currentMatchups.All(matchup => matchup.WinnerSet);
         }
     }
 }
