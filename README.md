@@ -1,4 +1,4 @@
-## Tournament Scheduler
+## Tournament Scheduler ![](https://travis-ci.org/Sprunth/TournamentScheduler.svg?branch=master)
 
 A library to easily generate matchups for various types of tournament formats.
 
