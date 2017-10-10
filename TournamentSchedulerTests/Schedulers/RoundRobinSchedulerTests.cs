@@ -1,20 +1,20 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Sprunth.TournamentScheduler.Schedulers;
+﻿using Sprunth.TournamentScheduler.Schedulers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using NUnit.Framework;
 
 namespace Sprunth.TournamentScheduler.Schedulers.Tests
 {
-    [TestClass()]
+    [TestFixture]
     public class RoundRobinSchedulerTests
     {
-        private readonly RoundRobinScheduler<int> scheduler = new RoundRobinScheduler<int>();
+        private RoundRobinScheduler<int> scheduler;
         private List<int> testCompetitors;
 
-        [TestInitialize()]
+        [SetUp()]
         public void Setup()
         {
             testCompetitors = new List<int>();
@@ -22,9 +22,10 @@ namespace Sprunth.TournamentScheduler.Schedulers.Tests
             {
                 testCompetitors.Add(i);
             }
+            scheduler = new RoundRobinScheduler<int>();
         }
 
-        [TestMethod()]
+        [Test()]
         public void LoadCompetitorsTest()
         {
             scheduler.LoadCompetitors(testCompetitors);
@@ -37,7 +38,7 @@ namespace Sprunth.TournamentScheduler.Schedulers.Tests
             Assert.IsTrue((firstNotSecond.Count == 1) && (secondNotFirst.Count == 0));
         }
 
-        [TestMethod()]
+        [Test()]
         public void LoadCompetitorsTest2()
         {
             scheduler.LoadCompetitors(testCompetitors);
@@ -51,7 +52,7 @@ namespace Sprunth.TournamentScheduler.Schedulers.Tests
             Assert.IsTrue(scheduler.firstCompetitor.Equals(lastOne));
         }
 
-        [TestMethod()]
+        [Test()]
         public void CalculateMatchupsTest()
         {
             scheduler.LoadCompetitors(testCompetitors);
@@ -74,7 +75,7 @@ namespace Sprunth.TournamentScheduler.Schedulers.Tests
             Assert.IsTrue(wrongMatchCount == 0);
         }
 
-        [TestMethod()]
+        [Test()]
         public void CalculateMatchupsByDayTest()
         {
             scheduler.LoadCompetitors(testCompetitors);
@@ -84,7 +85,7 @@ namespace Sprunth.TournamentScheduler.Schedulers.Tests
             Assert.IsTrue(matchupsByDay.All(tuples => tuples.Count == (int) Math.Ceiling(testCompetitors.Count/2.0)));
         }
 
-        [TestMethod()]
+        [Test ()]
         public void CalculateMatchupsByDayTest2()
         {
             scheduler.LoadCompetitors(testCompetitors);

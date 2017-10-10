@@ -1,20 +1,22 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Sprunth.TournamentScheduler.Schedulers;
+﻿using Sprunth.TournamentScheduler.Schedulers;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using NUnit.Framework;
+using NUnit.Framework.Constraints;
 
 namespace Sprunth.TournamentScheduler.Schedulers.Tests
 {
-    [TestClass()]
+    [TestFixture()]
     public class SingleEliminationSchedulerTests
     {
         private SingleEliminationScheduler<int> scheduler;
         private List<int> testCompetitors;
 
-        [TestInitialize()]
+        [SetUp()]
         public void Setup()
         {
             testCompetitors = new List<int>();
@@ -25,7 +27,7 @@ namespace Sprunth.TournamentScheduler.Schedulers.Tests
             scheduler = new SingleEliminationScheduler<int>();
         }
 
-        [TestMethod()]
+        [Test()]
         public void LoadCompetitorsTest()
         {
             scheduler.LoadCompetitors(testCompetitors);
@@ -33,8 +35,7 @@ namespace Sprunth.TournamentScheduler.Schedulers.Tests
             Assert.IsTrue(scheduler.competitors.All(i => testCompetitors.Contains(i)));
         }
 
-        [TestMethod()]
-        [ExpectedException(typeof(Exception))]
+        [Test()]
         public void LoadCompetitorsNotPowerOfTwoTest()
         {
             testCompetitors = new List<int>();
@@ -42,10 +43,10 @@ namespace Sprunth.TournamentScheduler.Schedulers.Tests
             {
                 testCompetitors.Add(i);
             }
-            scheduler.LoadCompetitors(testCompetitors); // should throw exception
+            Assert.Throws<Exception>(() => scheduler.LoadCompetitors(testCompetitors));
         }
 
-        [TestMethod()]
+        [Test()]
         public void CalculateNextMatchupsTest()
         {
             scheduler.LoadCompetitors(testCompetitors);
@@ -55,17 +56,16 @@ namespace Sprunth.TournamentScheduler.Schedulers.Tests
             scheduler.CalculateNextMatchups();
         }
 
-        [TestMethod()]
-        [ExpectedException(typeof(Exception))]
+        [Test()]
         public void CalculateNextMatchupsFailTest()
         {
             scheduler.LoadCompetitors(testCompetitors);
             scheduler.CalculateNextMatchups();
             // Second call will fail as not all results are submitted yet
-            scheduler.CalculateNextMatchups();
+            Assert.Throws<Exception>(() => scheduler.CalculateNextMatchups());
         }
 
-        [TestMethod()]
+        [Test()]
         public void GetCurrentMatchupsTest()
         {
             scheduler.LoadCompetitors(testCompetitors);
@@ -77,13 +77,12 @@ namespace Sprunth.TournamentScheduler.Schedulers.Tests
             Assert.IsTrue(matchups.TrueForAll(matchup => scheduler.competitors.Contains(matchup.Challenger2)));
         }
 
-        [TestMethod()]
-        [ExpectedException(typeof(Exception))]
+        [Test()]
         public void GetCurrentMatchupsFailTest()
         {
             scheduler.LoadCompetitors(testCompetitors);
             // if we call GetCurrentMatchups without calculating once, it should raise an exception
-            scheduler.GetCurrentMatchups();
+            Assert.Throws<Exception>(() => scheduler.GetCurrentMatchups());
         }
     }
 }
