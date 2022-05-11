@@ -9,8 +9,8 @@ namespace Sprunth.TournamentScheduler.Schedulers
 {
     public class SingleEliminationScheduler<T> : EliminationScheduler<T> where T : IComparable
     {
-        internal HashSet<T> competitors = new HashSet<T>();
-        internal List<Matchup<T>> currentMatchups;
+        public HashSet<T> competitors = new HashSet<T>();
+        public List<Matchup<T>> currentMatchups;
 
         public int CurrentIteration { get; set; }
 

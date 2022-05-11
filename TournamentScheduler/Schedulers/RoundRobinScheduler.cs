@@ -18,8 +18,8 @@ namespace Sprunth.TournamentScheduler.Schedulers
         // Based on http://stackoverflow.com/a/1293174/495501
         
 
-        internal T firstCompetitor;
-        internal readonly List<T> competitors = new List<T>();
+        public T firstCompetitor;
+        public readonly List<T> competitors = new List<T>();
         private int competitionIterations;
         private int halfSize;
 
