@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.1.32421.90
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TournamentScheduler", "TournamentScheduler.csproj", "{4D8A2642-ED8E-4072-98E6-E71524839F96}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TournamentScheduler", "TournamentScheduler\TournamentScheduler.csproj", "{4D8A2642-ED8E-4072-98E6-E71524839F96}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TournamentSchedulerTests", "..\TournamentSchedulerTests\TournamentSchedulerTests.csproj", "{4EBD11DC-E064-4722-A2F5-C03734B7462E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TournamentSchedulerTests", "TournamentSchedulerTests\TournamentSchedulerTests.csproj", "{4EBD11DC-E064-4722-A2F5-C03734B7462E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TournamentSchedulerSamples", "..\TournamentSchedulerSamples\TournamentSchedulerSamples.csproj", "{E4DEAC50-AF21-4988-A934-35A0500559F0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TournamentSchedulerSamples", "TournamentSchedulerSamples\TournamentSchedulerSamples.csproj", "{E4DEAC50-AF21-4988-A934-35A0500559F0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
